@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | IGCF</title>
+    <link rel="stylesheet" href="about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<nav class="glass-nav">
+    <div class="nav-container">
+        <a href="#home" class="nav-brand">IGC Foundation</a>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <ul class="nav-menu" id="navMenu">
+            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+            
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle">About ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#ahero" class="dropdown-link">The IGC Story</a></li>
+                    <li><a href="#cgrid" class="dropdown-link">Vision & Mission</a></li>
+                    <li><a href="#founders" class="dropdown-link">Leadership Team</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle">Activities ▾</a>
+                <ul class="dropdown-menu">
+                    <li><a href="capacity-development.html" class="dropdown-link">Capacity Development</a></li>
+                    <li><a href="policy-activity.html" class="dropdown-link">Policy Advocacy</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item"><a href="#events" class="nav-link">Events</a></li>
+            <li class="nav-item"><a href="contact.html" class="nav-btn">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<section class="about-hero" id="ahero">
+    <div class="container">
+        <h1 class="animate-entry">About IGCF</h1>
+        <p class="tagline animate-entry delay-1">Youth Leadership • Opportunity Creation • Universal Values</p>
+        <p class="tagline animate-entry delay-2">Trust Building • Hope for the Future</p>
+    </div>
+</section>
+
+<section class="about-content">
+    <div class="container">
+        
+        <div class="who-card reveal">
+            <div class="who-card-content">
+                <h2>Who We Are</h2>
+                <p>We are the Institute for Global Cooperation Foundation (IGCF)—a vibrant, youth-led think tank dedicated to a single powerful idea: that the young people of today are the architects of tomorrow.</p>
+                <p>Founded and driven by young changemakers, we provide a dynamic platform where fresh perspectives meet serious policy. We move beyond theory to action, equipping emerging leaders with the practical skills, global networks, and research experience needed to tackle Bangladesh’s most pressing challenges.</p>
+            </div>
+        </div>
+
+        <div class="cards-grid" id="cgrid">
+            <div class="card reveal">
+                <h3>Our Vision</h3>
+                <p>To become the leading youth-led voice in Bangladesh, known for turning fresh ideas into actionable policy and fostering genuine global cooperation through the power of young leadership.</p>
+            </div>
+
+            <div class="card reveal delay-1">
+                <h3>Our Mission</h3>
+                <p>We empower youth to lead, innovate, and collaborate by putting them at the forefront of research and policy conversations that shape their future, equipping them with practical skills and strong networks to drive real change.</p>            
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="founders-section" id="founders">
+    <div class="container">
+        <h2 class="section-title reveal">Founders</h2>
+        
+        <div class="founders-grid">
+            <div class="founder-card reveal">
+                <div class="image-wrapper">
+                    <img src="f1.webp" alt="Mahmudur Rahman" loading="lazy">
+                </div>
+                <div class="founder-info">
+                    <h3>Mahmudur Rahman</h3>
+                    <span class="designation">Chairman</span>
+                    <p class="bio">
+                        “Our mission is to unlock the extraordinary potential within Bangladesh’s youth. IGCF is
+more than an organization; it’s a promise to the next generation. We are building a pipeline
+of leaders who are not only ready to face future challenges but are already designing the
+solutions.”
+                    </p>
+                </div>
+            </div>
+
+            <div class="founder-card reveal delay-1">
+                <div class="image-wrapper">
+                    <img src="f2.webp" alt="Shama Obaed" loading="lazy">
+                </div>
+                <div class="founder-info">
+                    <h3>Shama Obaed</h3>
+                    <span class="designation">Director</span>
+                    <p class="bio">
+                        “The genius of IGCF lies in the collective brilliance of the young people we serve. Every
+initiative is crafted to turn their energy into expertise and their ideas into influence. We
+don’t see youth as beneficiaries; we see them as partners and pioneers. Here, you don't
+just learn about leadership—you practice it.”
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-left">
+            © 2025 IGC Foundation | All Rights Reserved.
+        </div>
+
+        <div class="footer-right">
+            Developed by Trion Tech.
+        </div>
+</footer>
+
+<script>
+    // 1. Mobile Menu Logic
+    const hamburger = document.getElementById("hamburger");
+    const navMenu = document.getElementById("navMenu");
+
+    if(hamburger) {
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+    }
+
+    // Close menu when link clicked
+    document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+    }));
+
+    // 2. Modern Scroll Reveal Animation
+    const revealOptions = {
+        threshold: 0.15, // Trigger when 15% visible
+        rootMargin: "0px 0px -50px 0px" // Offset slightly so it triggers before bottom
+    };
+
+    const revealOnScroll = new IntersectionObserver((entries, revealOnScroll) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add("active");
+            revealOnScroll.unobserve(entry.target);
+        });
+    }, revealOptions);
+
+    // Target anything with class 'reveal'
+    document.querySelectorAll(".reveal").forEach(el => {
+        revealOnScroll.observe(el);
+    });
+</script>
+
+</body>
+</html>

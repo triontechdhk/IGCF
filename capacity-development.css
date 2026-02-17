@@ -1,0 +1,257 @@
+/* --- Imports & Variables --- */
+:root {
+    --primary: #0f172a;
+    --accent: #38bdf8;
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--primary);
+    color: rgb(221, 155, 155);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* --- Hero Section --- */
+.cd-hero {
+    height: 70vh;
+    background: url('CD.webp') center/cover no-repeat;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 60px; /* Offset for fixed nav */
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(15,23,42,0.3), var(--primary));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+
+.badge {
+    background: var(--accent);
+    color: var(--primary);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* --- Cards Grid --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: #fff; }
+
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding-bottom: 4rem;
+}
+
+.glass-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Spotlight Effect on Hover */
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: var(--y, 50%);
+    left: var(--x, 50%);
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.2), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+.glass-card:hover::before { opacity: 1; }
+.glass-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); border-color: var(--accent); }
+
+.card-icon { font-size: 3rem; margin-bottom: 1rem; }
+.glass-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+.glass-card p { color: =#94a3b8; line-height: 1.6; }
+.learn-more { display: inline-block; margin-top: 1.5rem; color: var(--accent); text-decoration: none; font-weight: bold; }
+
+/* --- Timeline Section --- */
+.timeline-section { padding: 4rem 0; position: relative; overflow: hidden; }
+.timeline { position: relative; max-width: 800px; margin: 0 auto; padding: 20px; }
+
+/* The vertical line */
+/* --- Timeline Section --- */
+.timeline-section { 
+    padding: 4rem 0; 
+    position: relative; 
+    overflow: hidden; 
+}
+
+.timeline { 
+    position: relative; 
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 20px; 
+}
+
+/* THE REFLECTIVE LINE */
+/* The vertical glowing line */
+.timeline-line {
+    position: absolute;
+    left: 50%; 
+    top: 0; 
+    bottom: 0;
+    width: 4px; /* Made slightly thicker to hold the glow */
+    /* A gradient that fades in and out at the top and bottom */
+    background: linear-gradient(to bottom, rgba(56, 189, 248, 0.1) 0%, rgba(56, 189, 248, 0.8) 50%, rgba(56, 189, 248, 0.1) 100%);
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.5); /* The outer glow */
+    transform: translateX(-50%);
+    border-radius: 2px;
+    overflow: hidden; /* Keeps the animated pulse inside the line */
+}
+
+/* The animated reflective pulse traveling down the line */
+.timeline-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Length of the moving reflection */
+    background: #ffffff; /* Bright white core */
+    box-shadow: 0 0 20px 5px var(--accent); /* Blue glowing trail */
+    animation: reflect-pulse 4s infinite linear;
+    border-radius: 2px;
+}
+
+/* Animation keyframes for the pulse */
+@keyframes reflect-pulse {
+    0% { 
+        top: -80px; 
+        opacity: 0; 
+    }
+    10% { 
+        opacity: 1; 
+    }
+    90% { 
+        opacity: 1; 
+    }
+    100% { 
+        top: 100%; 
+        opacity: 0; 
+    }
+}
+
+.timeline-item {
+    margin-bottom: 4rem;
+    position: relative;
+    width: 50%;
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+.timeline-item:nth-child(odd) { left: 0; text-align: right; }
+.timeline-item:nth-child(even) { left: 50%; text-align: left; }
+
+/* THE DOTS (Updated to match the glowing line) */
+.timeline-item .dot {
+    position: absolute;
+    width: 20px; 
+    height: 20px;
+    
+    /* Dark center with glowing rim */
+    background: var(--primary); 
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    
+    top: 15px;
+    
+    /* Connects the dot visually to the glowing line */
+    box-shadow: 0 0 15px var(--accent), inset 0 0 8px var(--accent);
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+/* Hover Effect: Dot lights up solid when you hover the text */
+.timeline-item:hover .dot {
+    background: var(--accent);
+    transform: scale(1.3);
+    box-shadow: 0 0 30px var(--accent);
+}
+
+.timeline-item:nth-child(odd) .dot { right: -12px; } /* Adjusted for thicker line */
+.timeline-item:nth-child(even) .dot { left: -12px; }  /* Adjusted for thicker line */
+
+.timeline-item .content {
+    color: #000;
+    background: var(--glass);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:hover .content {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+}
+
+/* --- Animations --- */
+.fade-in-up { opacity: 0; animation: fadeInUp 1s forwards; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.reveal, .reveal-left, .reveal-right { opacity: 0; transition: all 1s ease; }
+.reveal { transform: translateY(50px); }
+.reveal-left { transform: translateX(-50px); }
+.reveal-right { transform: translateX(50px); }
+.active { opacity: 1; transform: translate(0); }
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .timeline-line { left: 20px; }
+    .timeline-item { width: 100%; left: 0 !important; padding-left: 60px; text-align: left !important; }
+    .timeline-item .dot { left: 10px !important; }
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px 20px;
+    background: var(--primary-dark);
+    color: #94a3b8;
+    font-size: 15px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer2 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    text-align: right; 
+    width: auto;
+}

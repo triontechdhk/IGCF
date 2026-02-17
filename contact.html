@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | IGCF</title>
+    <link rel="stylesheet" href="contact.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">IGC Foundation</a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a href="about.html" class="nav-link dropdown-toggle">About ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html#ahero" class="dropdown-link">The IGC Story</a></li>
+                        <li><a href="about.html#cgrid" class="dropdown-link">Vision & Mission</a></li>
+                        <li><a href="about.html#founders" class="dropdown-link">Leadership Team</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Activities ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="capacity-development.html" class="dropdown-link">Capacity Development</a></li>
+                        <li><a href="policy-activity.html" class="dropdown-link">Policy Advocacy</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#events" class="nav-link">Events</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-btn">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="contact-header">
+        <div class="container">
+            <h1 class="animate-entry">Get in Touch</h1>
+            <p class="tagline animate-entry delay-1">We are always open to conversation, collaboration, and new ideas.</p>
+        </div>
+    </header>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-wrapper">
+                
+                <div class="form-row reveal">
+                    <div class="google-form-card">
+                        <div class="form-content">
+                            <div class="form-icon-floating"><i class="fab fa-google"></i></div>
+                            <div class="form-text">
+                                <h2>Join the Movement</h2>
+                                <p>Ready to make an impact? </p>
+                                <p>Fill out this form to get involved with IGCF initiatives, volunteer, or partner with us.</p>
+                                <a href="https://forms.gle/orMifARs7ytiWygGA" target="_blank" class="form-link-btn">
+                                    Open Registration Form <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-row reveal delay-1">
+                    <div class="glass-container">
+                        <h3 class="section-label">Contact Details</h3>
+                        
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <div class="icon-pulse"><i class="fas fa-map-marker-alt"></i></div>
+                                <h4>Visit Us</h4>
+                                <p>Dhanmandi, Dhaka 1213<br>Bangladesh</p>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="icon-pulse"><i class="fas fa-envelope"></i></div>
+                                <h4>Email Us</h4>
+                                <p><a href="mailto:contact.igcf@gmail.com">contact.igcf@gmail.com</a></p>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="icon-pulse"><i class="fas fa-phone-alt"></i></div>
+                                <h4>Call Us</h4>
+                                <p><a href="tel:+8801XXXXXXXXX">+880 1XXX-XXXXXX</a></p>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="icon-pulse"><i class="fas fa-share-alt"></i></div>
+                                <h4>Follow Us</h4>
+                                <div class="social-icons-row">
+                                    <a href="https://www.facebook.com/igcfoundation#" class="s-icon"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#" class="s-icon"><i class="fab fa-twitter"></i></a>
+                                    <a href="#" class="s-icon"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" class="s-icon"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer>
+    <div class="footer-container">
+        <div class="footer-left">
+            © 2025 IGC Foundation | All Rights Reserved.
+        </div>
+
+        <div class="footer-right">
+            Developed by Trion Tech.
+        </div>
+</footer>
+
+    <script>
+        // Mobile Menu
+        const hamburger = document.getElementById("hamburger");
+        const navMenu = document.getElementById("navMenu");
+        if(hamburger) {
+            hamburger.addEventListener("click", () => {
+                hamburger.classList.toggle("active");
+                navMenu.classList.toggle("active");
+            });
+        }
+        document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+
+        // Scroll Reveal
+        const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
+        const revealOnScroll = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("active");
+                obs.unobserve(entry.target);
+            });
+        }, revealOptions);
+        document.querySelectorAll(".reveal").forEach(el => revealOnScroll.observe(el));
+    </script>
+
+</body>
+</html>
