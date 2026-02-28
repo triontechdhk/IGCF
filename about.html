@@ -86,9 +86,9 @@
                     <span class="designation">Chairman</span>
                     <p class="bio">
                         “Our mission is to unlock the extraordinary potential within Bangladesh’s youth. IGCF is
-more than an organization; it’s a promise to the next generation. We are building a pipeline
-of leaders who are not only ready to face future challenges but are already designing the
-solutions.”
+                        more than an organization; it’s a promise to the next generation. We are building a pipeline
+                        of leaders who are not only ready to face future challenges but are already designing the
+                        solutions.”
                     </p>
                 </div>
             </div>
@@ -99,12 +99,12 @@ solutions.”
                 </div>
                 <div class="founder-info">
                     <h3>Shama Obaed</h3>
-                    <span class="designation">Director</span>
+                    <span class="designation">Executive Director</span>
                     <p class="bio">
                         “The genius of IGCF lies in the collective brilliance of the young people we serve. Every
-initiative is crafted to turn their energy into expertise and their ideas into influence. We
-don’t see youth as beneficiaries; we see them as partners and pioneers. Here, you don't
-just learn about leadership—you practice it.”
+                        initiative is crafted to turn their energy into expertise and their ideas into influence. We
+                        don’t see youth as beneficiaries; we see them as partners and pioneers. Here, you don't
+                        just learn about leadership—you practice it.”
                     </p>
                 </div>
             </div>
@@ -115,31 +115,28 @@ just learn about leadership—you practice it.”
 <footer>
     <div class="footer-container">
         <div class="footer-left">
-            © 2025 IGC Foundation | All Rights Reserved.
+            © 2026 IGC Foundation | All Rights Reserved.
         </div>
-
         <div class="footer-right">
             Developed by Trion Tech.
         </div>
+    </div>
 </footer>
 
 <script>
-    // 1. Mobile Menu Logic
-    const hamburger = document.getElementById("hamburger");
-    const navMenu = document.getElementById("navMenu");
-
-    if(hamburger) {
-        hamburger.addEventListener("click", () => {
-            hamburger.classList.toggle("active");
-            navMenu.classList.toggle("active");
-        });
-    }
-
-    // Close menu when link clicked
-    document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
-        hamburger.classList.remove("active");
-        navMenu.classList.remove("active");
-    }));
+    // 1. Mobile Dropdown Logic (Since Hamburger is removed)
+    const dropdowns = document.querySelectorAll(".dropdown");
+    dropdowns.forEach(dropdown => {
+        const toggleBtn = dropdown.querySelector(".dropdown-toggle");
+        if(toggleBtn) {
+            toggleBtn.addEventListener("click", (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault(); 
+                    dropdown.classList.toggle("active");
+                }
+            });
+        }
+    });
 
     // 2. Modern Scroll Reveal Animation
     const revealOptions = {
