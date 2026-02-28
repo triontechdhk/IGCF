@@ -26,7 +26,7 @@ body {
     padding: 0 1rem;
 }
 
-/* ================== NAVBAR ================== */
+/* ================== FLUID NAVBAR ================== */
 .glass-nav {
     position: fixed;
     top: 0; left: 0; width: 100%;
@@ -40,7 +40,6 @@ body {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    /* Fluid padding that shrinks on small screens */
     padding: clamp(0.5rem, 2vw, 1rem) clamp(1rem, 5vw, 2rem);
     display: flex;
     flex-wrap: wrap;
@@ -55,9 +54,8 @@ body {
     color: var(--white);
     text-decoration: none;
     letter-spacing: 0.5px;
-    /* Magic flex property: forces the logo to stay on its own line if space is tight */
     flex: 1 1 max-content;
-    text-align: center;
+    text-align: left;
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -66,12 +64,10 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: flex-end;
-    /* Fluid gap between links */
     gap: clamp(0.5rem, 2vw, 1.5rem);
     list-style: none;
     margin: 0; 
     padding: 0;
-    /* Magic flex property: takes up remaining space, but forces a wrap if there isn't enough room */
     flex: 999 1 max-content;
 }
 
@@ -136,7 +132,6 @@ body {
     z-index: 1001;
 }
 
-/* Works for hover on desktop and tap on mobile */
 .dropdown:hover .dropdown-menu,
 .dropdown:focus-within .dropdown-menu {
     opacity: 1; visibility: visible;
@@ -188,14 +183,15 @@ body {
 .contact-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 4rem; /* Space between Form Card and Info Row */
+    gap: clamp(2rem, 6vw, 4rem); /* Fluid gap between card and info row */
 }
 
 /* ================== GOOGLE FORM CARD (TOP) ================== */
 .google-form-card {
     background: white;
-    border-radius: 30px;
-    padding: clamp(2rem, 5vw, 4rem);
+    border-radius: clamp(16px, 4vw, 30px);
+    /* Fluid padding dynamically scales down on mobile */
+    padding: clamp(1.5rem, 6vw, 4rem);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
     position: relative;
     overflow: hidden;
@@ -212,7 +208,7 @@ body {
 
 /* Floating Icon Animation */
 .form-icon-floating {
-    font-size: 3.5rem;
+    font-size: clamp(2.5rem, 6vw, 3.5rem); /* Fluid icon size */
     background: linear-gradient(135deg, #4285F4, #34A853, #FBBC05, #EA4335);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     margin-bottom: 1.5rem;
@@ -225,14 +221,30 @@ body {
 }
 
 .google-form-card h2 {
-    font-family: 'Montserrat', sans-serif; font-size: 2rem; color: var(--text-dark); margin-bottom: 1rem;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: clamp(1.5rem, 4vw, 2rem); /* Fluid heading */
+    color: var(--text-dark); 
+    margin-bottom: 1rem;
 }
-.google-form-card p { color: var(--text-body); margin-bottom: 2rem; font-size: 1.1rem; }
+.google-form-card p { 
+    color: var(--text-body); 
+    margin-bottom: 2rem; 
+    font-size: clamp(0.95rem, 2vw, 1.1rem); 
+}
 
 .form-link-btn {
-    display: inline-flex; align-items: center; padding: 1rem 2.5rem;
-    background: #4285F4; color: white; text-decoration: none; border-radius: 50px;
-    font-weight: 700; transition: all 0.3s; box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center;
+    padding: clamp(0.8rem, 2vw, 1rem) clamp(1.5rem, 4vw, 2.5rem);
+    background: #4285F4; 
+    color: white; 
+    text-decoration: none; 
+    border-radius: 50px;
+    font-weight: 700; 
+    font-size: clamp(0.85rem, 2vw, 1rem); /* Fluid button text */
+    transition: all 0.3s; 
+    box-shadow: 0 5px 15px rgba(66, 133, 244, 0.3);
 }
 .form-link-btn:hover { background: #3367d6; transform: translateY(-3px); box-shadow: 0 10px 25px rgba(66, 133, 244, 0.4); }
 .form-link-btn i { margin-left: 10px; transition: transform 0.3s; }
@@ -243,23 +255,28 @@ body {
     background: var(--glass-card);
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.8);
-    border-radius: 30px;
-    padding: 3rem 2rem;
+    border-radius: clamp(16px, 4vw, 30px);
+    padding: clamp(1.5rem, 6vw, 3rem) clamp(1rem, 4vw, 2rem);
     text-align: center;
     box-shadow: 0 10px 30px rgba(0,0,0,0.05);
 }
 
 .section-label {
-    font-family: 'Montserrat', sans-serif; font-size: 1rem; text-transform: uppercase;
-    letter-spacing: 2px; color: var(--text-body); margin-bottom: 3rem; opacity: 0.7;
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 1rem; 
+    text-transform: uppercase;
+    letter-spacing: 2px; 
+    color: var(--text-body); 
+    margin-bottom: clamp(1.5rem, 5vw, 3rem); 
+    opacity: 0.7;
 }
 
-/* The Grid Layout for Row-Wise Info */
+/* The Grid Layout for Row-Wise Info (No Media Queries Needed!) */
 .info-grid {
     display: grid;
-    /* Auto-fit creates columns, minmax ensures they don't get too small */
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 3rem;
+    /* Auto-fit creates columns, minmax prevents breaking on tiny phones */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: clamp(1.5rem, 5vw, 3rem);
     align-items: flex-start;
 }
 
@@ -269,12 +286,13 @@ body {
 
 /* Pulsing Icons */
 .icon-pulse {
-    width: 65px; height: 65px;
+    width: clamp(50px, 8vw, 65px); 
+    height: clamp(50px, 8vw, 65px);
     background: white;
     color: var(--accent-color);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
+    font-size: clamp(1.2rem, 3vw, 1.5rem);
     margin-bottom: 1.5rem;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
     position: relative;
@@ -307,25 +325,26 @@ body {
 }
 .s-icon:hover { background: var(--primary-blue); color: white; transform: translateY(-3px); }
 
-/* Mobile Adjustments */
-@media (max-width: 768px) {
-    .google-form-card { padding: 2rem 1.5rem; }
-    .info-grid { gap: 3rem; } /* Adds space when stacked */
-}
-
-/* Footer */
+/* ================== FLUID FOOTER ================== */
 footer {
-    text-align: center;
-    padding: 15px 20px;
-    background: var(--primary-dark);
-    color: #94a3b8;
+    padding: 20px;
+    background: var(--text-dark);
+    color: #cbd5e1;
     font-size: 15px;
     border-top: 1px solid rgba(255,255,255,0.05);
 }
-.footer2 {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    text-align: right; 
-    width: auto;
+
+.footer-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows stacking naturally on mobile */
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-left, .footer-right {
+    flex: 1 1 250px; /* If the screen is smaller than 250px, they stack and center */
+    text-align: center;
 }
