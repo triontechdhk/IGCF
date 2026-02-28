@@ -133,28 +133,31 @@
 
 
 /* General Reset & Layout Fixes */
+/* General Reset & Layout Fixes */
 .event-section {
     width: 100%;
-    padding: 60px 20px;
+    /* Fluid padding that shrinks on mobile */
+    padding: clamp(40px, 8vw, 80px) clamp(15px, 4vw, 30px);
     display: block;
     clear: both;
+    box-sizing: border-box; /* Stops padding from breaking widths */
 }
 
 .event-container {
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: center;
+    /* Magic Grid: Responsive to every screen size automatically */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: clamp(20px, 4vw, 40px);
 }
 
 /* Fix for the Section Titles */
 .section-title {
     width: 100%;
     text-align: center;
-    margin-bottom: 40px;
-    font-size: 28px;
+    margin-bottom: clamp(30px, 5vw, 50px);
+    font-size: clamp(1.8rem, 4vw, 2.5rem); /* Fluid text */
     color: #203a87;
     position: relative;
 }
@@ -174,24 +177,41 @@
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
     overflow: hidden;
-    width: 31.25rem;
+    width: 100%; /* Replaced fixed width with fluid 100% */
     border: 1px solid #e0e0e0;
     display: flex;
     flex-direction: column; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .course-card:hover {
     transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+/* BIG RESPONSIVE PHOTOS */
+.card-banner {
+    width: 100%;
+    /* Locks the image shape like a wide video thumbnail so it scales perfectly */
+    aspect-ratio: 16 / 9; 
+    overflow: hidden;
 }
 
 .card-banner img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    /* Prevents the image from stretching or squishing when resizing */
+    object-fit: cover; 
     display: block;
+    transition: transform 0.5s ease;
+}
+
+.course-card:hover .card-banner img {
+    transform: scale(1.05); /* Adds a nice subtle zoom on hover */
 }
 
 .card-content {
-    padding: 20px;
+    padding: clamp(15px, 3vw, 25px);
     flex-grow: 1; 
     display: flex;
     flex-direction: column;
@@ -214,11 +234,11 @@
 .price-tag {
     color: #5c6bc0;
     font-weight: bold;
-    font-size: 14px;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
 }
 
 .course-title {
-    font-size: 18px;
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem); /* Fluid title */
     color: #222;
     line-height: 1.4;
     margin-bottom: 15px;
@@ -240,11 +260,12 @@
     align-items: center;
     justify-content: center;
     color: #999;
+    flex-shrink: 0;
 }
 
 .instructor-name {
     color: #777;
-    font-size: 14px;
+    font-size: 0.9rem;
 }
 
 .course-details {
@@ -252,7 +273,7 @@
 }
 
 .course-details p {
-    font-size: 14px;
+    font-size: 0.9rem;
     color: #555;
     margin-bottom: 8px;
 }
@@ -264,8 +285,10 @@
 
 .meta-info {
     display: flex;
+    flex-wrap: wrap; /* Allows wrapping on tiny phone screens */
     justify-content: space-between;
-    font-size: 13px;
+    gap: 10px;
+    font-size: 0.85rem;
     color: #555;
     margin-top: 15px;
 }
@@ -276,11 +299,13 @@
 }
 
 .card-footer {
-    padding: 15px 20px;
+    padding: clamp(12px, 2vw, 20px);
     border-top: 1px solid #eee;
     display: flex;
+    flex-wrap: wrap; /* Keeps button from breaking text on small screens */
     justify-content: space-between;
     align-items: center;
+    gap: 15px;
 }
 
 .deadline {
@@ -291,11 +316,11 @@
 .deadline .date {
     font-weight: bold;
     color: #222;
-    font-size: 15px;
+    font-size: clamp(0.9rem, 2vw, 1rem);
 }
 
 .deadline .label {
-    font-size: 12px;
+    font-size: 0.75rem;
     color: #999;
 }
 
@@ -303,16 +328,19 @@
     background-color: #203a87;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 10px clamp(15px, 3vw, 25px);
     border-radius: 6px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
+    white-space: nowrap;
 }
 
 .details-btn:hover {
     background-color: #162a63;
+    transform: scale(1.02);
 }
+
 
 /* --- Completed Events Grid --- */
 #completed-events {
