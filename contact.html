@@ -11,34 +11,34 @@
 <body>
 
     <nav class="glass-nav">
-    <div class="nav-container">
-        <a href="#home" class="nav-brand">IGC Foundation</a>
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">IGC Foundation</a>
 
-        <ul class="nav-menu" id="navMenu">
-            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-            
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle">About ▾</a>
-                <ul class="dropdown-menu">
-                    <li><a href="about.html#ahero" class="dropdown-link">The IGC Story</a></li>
-                    <li><a href="about.html#cgrid" class="dropdown-link">Vision & Mission</a></li>
-                    <li><a href="about.html#founders" class="dropdown-link">Leadership Team</a></li>
-                </ul>
-            </li>
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">About ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="about.html#ahero" class="dropdown-link">The IGC Story</a></li>
+                        <li><a href="about.html#cgrid" class="dropdown-link">Vision & Mission</a></li>
+                        <li><a href="about.html#founders" class="dropdown-link">Leadership Team</a></li>
+                    </ul>
+                </li>
 
-            <li class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle">Activities ▾</a>
-                <ul class="dropdown-menu">
-                    <li><a href="capacity-development.html" class="dropdown-link">Capacity Development</a></li>
-                    <li><a href="policy-activity.html" class="dropdown-link">Policy Advocacy</a></li>
-                </ul>
-            </li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle">Activities ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="capacity-development.html" class="dropdown-link">Capacity Development</a></li>
+                        <li><a href="policy-activity.html" class="dropdown-link">Policy Advocacy</a></li>
+                    </ul>
+                </li>
 
-            <li class="nav-item"><a href="event.html" class="nav-link">Events</a></li>
-            <li class="nav-item"><a href="contact.html" class="nav-btn">Contact</a></li>
-        </ul>
-    </div>
-</nav>
+                <li class="nav-item"><a href="event.html" class="nav-link">Events</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-btn">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
 
     <header class="contact-header">
         <div class="container">
@@ -109,32 +109,32 @@
     </section>
 
     <footer>
-    <div class="footer-container">
-        <div class="footer-left">
-            © 2025 IGC Foundation | All Rights Reserved.
+        <div class="footer-container">
+            <div class="footer-left">
+                © 2026 IGC Foundation | All Rights Reserved.
+            </div>
+            <div class="footer-right">
+                Developed by Trion Tech.
+            </div>
         </div>
-
-        <div class="footer-right">
-            Developed by Trion Tech.
-        </div>
-</footer>
+    </footer>
 
     <script>
-        // Mobile Menu
-        const hamburger = document.getElementById("hamburger");
-        const navMenu = document.getElementById("navMenu");
-        if(hamburger) {
-            hamburger.addEventListener("click", () => {
-                hamburger.classList.toggle("active");
-                navMenu.classList.toggle("active");
-            });
-        }
-        document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
-            hamburger.classList.remove("active");
-            navMenu.classList.remove("active");
-        }));
+        // 1. Mobile Dropdown Logic (Hamburger removed)
+        const dropdowns = document.querySelectorAll(".dropdown");
+        dropdowns.forEach(dropdown => {
+            const toggleBtn = dropdown.querySelector(".dropdown-toggle");
+            if(toggleBtn) {
+                toggleBtn.addEventListener("click", (e) => {
+                    if (window.innerWidth <= 768) {
+                        e.preventDefault(); 
+                        dropdown.classList.toggle("active");
+                    }
+                });
+            }
+        });
 
-        // Scroll Reveal
+        // 2. Scroll Reveal Animation
         const revealOptions = { threshold: 0.15, rootMargin: "0px 0px -50px 0px" };
         const revealOnScroll = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
