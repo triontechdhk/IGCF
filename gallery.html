@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Photo Gallery</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --accent-color: #007aff;
+            --card-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        header h1 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* The Grid Logic */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            background: #fff;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover; /* Keeps aspect ratio clean */
+            display: block;
+            transition: filter 0.3s ease;
+        }
+
+        .gallery-item:hover img {
+            filter: brightness(80%);
+        }
+
+        .caption {
+            padding: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        /* Lightbox effect (Optional/Simple) */
+        @media (max-width: 600px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Visual Portfolio</h1>
+        <p>A collection of moments and perspectives</p>
+    </header>
+
+    <main class="gallery-container">
+        <div class="gallery-item">
+            <img src="https://picsum.photos/id/10/600/400" alt="Mountain Lake">
+            <div class="caption">Highland Reflections</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://picsum.photos/id/20/600/400" alt="Desk Setup">
+            <div class="caption">Minimalist Workspace</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://picsum.photos/id/26/600/400" alt="Architecture">
+            <div class="caption">Urban Geometry</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://picsum.photos/id/39/600/400" alt="Desert">
+            <div class="caption">Golden Sands</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://picsum.photos/id/54/600/400" alt="Woods">
+            <div class="caption">Morning Mist</div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://picsum.photos/id/103/600/400" alt="Feet on Relax">
+            <div class="caption">Quiet Moments</div>
+        </div>
+    </main>
+
+</body>
+</html>

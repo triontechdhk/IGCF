@@ -1,0 +1,288 @@
+/* --- Imports & Variables --- */
+:root {
+    --primary: #0f172a;
+    --accent: #38bdf8;
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+body {
+    background-color: var(--primary);
+    color: #e2e8f0; 
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* --- Clean Hero Section --- */
+.cd-hero {
+    min-height: 50vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 100px 20px 40px;
+    background: radial-gradient(circle at 50% 0%, rgba(56, 189, 248, 0.15) 0%, transparent 50%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%; 
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem); 
+    font-weight: 800;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    letter-spacing: -0.03em;
+}
+
+.hero-content p {
+    color: #94a3b8; 
+    font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+    max-width: 700px;
+    margin: 1rem auto 0 auto;
+    font-weight: 400;
+}
+
+.badge {
+    background: var(--accent);
+    color: var(--primary);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+/* --- Cards Grid (Fluid Layout) --- */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; color: #fff; }
+
+.content-grid {
+    display: grid;
+    /* Automatically creates responsive columns without media queries */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 2rem;
+    padding-bottom: 4rem;
+}
+
+.glass-card {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card.auto-hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    border-color: var(--accent);
+}
+
+.card-icon { font-size: 3rem; margin-bottom: 1rem; }
+.glass-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: #fff;}
+.glass-card p { color: #cbd5e1; }
+.learn-more { display: inline-block; margin-top: 1.5rem; color: var(--accent); text-decoration: none; font-weight: bold; }
+
+/* --- Timeline Section (Fluid, Left-Aligned Stepper) --- */
+/* --- PREMIUM TIMELINE SECTION (Fluid, Left-Aligned Stepper) --- */
+.timeline-section { 
+    padding: clamp(4rem, 10vw, 6rem) 0; 
+    position: relative; 
+    overflow: hidden; 
+}
+
+.timeline { 
+    position: relative; 
+    max-width: 900px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+/* The vertical glowing wire */
+.timeline-line {
+    position: absolute;
+    left: clamp(20px, 5vw, 40px); 
+    top: 0; 
+    bottom: 0;
+    width: 2px; /* Thinner, more elegant wire */
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* The "Shooting Star" light beam traveling down the wire */
+.timeline-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -1px; /* Centers the 4px beam on the 2px wire */
+    width: 4px;
+    height: 120px; 
+    background: linear-gradient(to bottom, rgba(56, 189, 248, 0), #38bdf8, #ffffff);
+    box-shadow: 0 0 20px 2px var(--accent); 
+    animation: shooting-star 5s infinite cubic-bezier(0.25, 1, 0.5, 1);
+    border-radius: 4px;
+}
+
+@keyframes shooting-star {
+    0% { top: -120px; opacity: 0; }
+    10% { opacity: 1; }
+    80% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+.timeline-item {
+    margin-bottom: clamp(3rem, 8vw, 5rem);
+    position: relative;
+    width: 100%; 
+    padding-left: clamp(50px, 12vw, 90px); /* Creates space for wire and dot */
+    box-sizing: border-box;
+    text-align: left; 
+}
+
+/* The Nodes / Dots */
+.timeline-item .dot {
+    position: absolute;
+    width: 16px; 
+    height: 16px;
+    background: var(--primary); 
+    border: 3px solid #334155; /* Neutral border initially */
+    border-radius: 50%;
+    
+    /* Perfect centering over the wire using math */
+    left: calc(clamp(20px, 5vw, 40px) - 7px); 
+    top: 24px; /* Aligns with the card title */
+    
+    z-index: 2;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); /* Bouncy transition */
+}
+
+/* Connecting Horizontal Line (Optional premium detail) */
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    top: 31px; /* Aligns with middle of the dot */
+    left: clamp(20px, 5vw, 40px);
+    width: clamp(30px, 7vw, 50px);
+    height: 2px;
+    background: linear-gradient(to right, rgba(56, 189, 248, 0.5), transparent);
+    z-index: 1;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+
+/* Premium Glass Content Card */
+.timeline-item .content {
+    position: relative;
+    color: #e2e8f0;
+    
+    /* Diagonal 3D glassmorphism gradient */
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    
+    padding: clamp(1.5rem, 4vw, 2.5rem);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.4s ease;
+    overflow: hidden; /* Keeps the giant numbers inside */
+    z-index: 2;
+}
+
+/* The Giant Watermark Numbers inside the card */
+.timeline-item .content::after {
+    content: attr(data-step); /* Pulls '01', '02' from the HTML */
+    position: absolute;
+    bottom: -15%;
+    right: 5%;
+    font-size: clamp(6rem, 15vw, 10rem); /* Scales hugely */
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03); /* Barely visible */
+    line-height: 1;
+    z-index: -1;
+    pointer-events: none;
+    transition: color 0.4s ease, transform 0.4s ease;
+}
+
+.timeline-item .content h3 { 
+    color: #fff; 
+    margin: 0 0 10px 0; 
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+}
+
+.timeline-item .content p {
+    margin: 0;
+    line-height: 1.7;
+    color: #94a3b8;
+    position: relative;
+    z-index: 1;
+}
+
+/* --- THE HOVER & PULSE STATES --- */
+
+/* When the JS pulse hits, OR when the user hovers over the card */
+.timeline-item.pulse-active .dot,
+.timeline-item:hover .dot {
+    background: var(--accent);
+    border-color: #ffffff;
+    box-shadow: 0 0 20px var(--accent);
+    transform: scale(1.3);
+}
+
+.timeline-item.pulse-active::before,
+.timeline-item:hover::before {
+    transform: scaleX(1); /* Draws the connecting line */
+}
+
+.timeline-item.pulse-active .content,
+.timeline-item:hover .content {
+    transform: translateY(-5px);
+    background: linear-gradient(145deg, rgba(56, 189, 248, 0.1) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border-color: rgba(56, 189, 248, 0.3);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2), 0 0 20px rgba(56, 189, 248, 0.1);
+}
+
+.timeline-item.pulse-active .content::after,
+.timeline-item:hover .content::after {
+    color: rgba(56, 189, 248, 0.08); /* Watermark lights up blue */
+    transform: translateY(-10px) scale(1.05); /* Watermark floats up slightly */
+}
+
+/* --- Animations --- */
+.fade-in-up { opacity: 0; animation: fadeInUp 1s forwards; }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+
+.reveal, .reveal-left, .reveal-right { opacity: 0; transition: all 1s ease; }
+.reveal { transform: translateY(50px); }
+.reveal-left { transform: translateX(-50px); }
+.reveal-right { transform: translateX(50px); }
+.active { opacity: 1; transform: translate(0); }
+
+/* --- Footer (Fluid) --- */
+footer {
+    text-align: center;
+    padding: 15px 20px;
+    background: var(--primary-dark);
+    color: #94a3b8;
+    font-size: 15px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+.footer2 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    text-align: right; 
+    width: auto;
+}
