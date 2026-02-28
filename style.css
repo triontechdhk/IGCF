@@ -532,9 +532,22 @@ section {
     color: var(--primary-dark);
     border-top: 8px solid var(--accent-color); 
 }
+/* Container for your custom SVG icons */
 .card-front .icon {
-    font-size: 60px;
+    width: 100px;   /* Sets a fixed size for the icon */
+    height: 100px;  /* Keeps it a perfect square */
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Ensures the SVG image fits perfectly inside the container */
+.card-front .icon img,
+.card-front .icon svg {
+    width: 250%;
+    height: 250%;
+    object-fit: contain; /* Prevents stretching or squishing */
 }
 .tap-hint {
     margin-top: 20px;
