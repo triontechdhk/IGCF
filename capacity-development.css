@@ -76,7 +76,7 @@ body {
 }
 
 .glass-card {
-    background: var(--glass);
+    background: #c9dfee;
     border: 1px solid var(--border);
     border-radius: 16px;
     padding: 2.5rem;
@@ -87,11 +87,29 @@ body {
 
 .glass-card.auto-hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 40px rgba(91, 146, 229, 1);
     border-color: var(--accent);
 }
 
-.card-icon { font-size: 3rem; margin-bottom: 1rem; }
+/* Container for both emojis and image icons */
+.card-icon { 
+    width: 75px;      /* Fixed ideal width */
+    height: 75px;     /* Fixed ideal height to keep it square */
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    font-size: 3rem;  /* Fallback size in case you use emojis */
+}
+
+/* Forces images/SVGs to fit perfectly inside the container */
+.card-icon img,
+.card-icon svg {
+    width: 150%;
+    height: 150%;
+    object-fit: contain; /* Prevents the image from stretching or squishing */
+    display: block;
+}
 .glass-card h3 { font-size: 1.5rem; margin-bottom: 0.5rem; color: #033c72;}
 .glass-card p { color: #3473c5; }
 .learn-more { display: inline-block; margin-top: 1.5rem; color: var(--accent); text-decoration: none; font-weight: bold; }
@@ -196,7 +214,7 @@ body {
     padding: clamp(1.5rem, 4vw, 2.5rem);
     border-radius: 20px;
     border: 1px solid rgba(97, 18, 18, 0.05);
-    transition: all 0.4s ease;
+    transition: all 0.4s ease;                   
     overflow: hidden; /* Keeps the giant numbers inside */
     z-index: 2;
 }
